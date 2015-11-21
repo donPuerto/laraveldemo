@@ -12,7 +12,8 @@ class Article extends Model
         'title',
         'body',
         'published_at',
-        'excerpt'
+        'excerpt',
+        'user_id'  //temporarilly
 
     ];
 
@@ -43,7 +44,7 @@ class Article extends Model
 
     public function user(){
 
-        $this->belongsTo('App\User');
+        return $this->belongsTo('App\User');
     }
 
 

@@ -11,21 +11,21 @@ class CreateArticlesTable extends Migration
      * @return void
      */
     public function up()
-    {
-        Schema::create('articles', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->string('title');
-            $table->text('body');
-            $table->timestamps();
-            $table->timestamp('published_at');
+{
+    Schema::create('articles', function (Blueprint $table) {
+        $table->increments('id');
+        $table->integer('user_id')->unsigned();
+        $table->string('title');
+        $table->text('body');
+        $table->timestamps();
+        $table->timestamp('published_at');
 
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users')
-                ->Ondelete('cascade');
-        });
-    }
+        $table->foreign('user_id')
+            ->references('id')
+            ->on('users')
+            ->Ondelete('cascade');
+    });
+}
 
     /**
      * Reverse the migrations.

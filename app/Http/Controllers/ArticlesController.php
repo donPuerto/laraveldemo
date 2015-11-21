@@ -7,14 +7,27 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ArticleRequest;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Session;
 
 class ArticlesController extends Controller
 {
+
+    /**
+     *Authentication Middleware
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(){
+
+        //return \Auth::User();
         $articles = Article::latest('published_at')->published()->get();
         return view('articles.index', compact('articles'));
     }
@@ -38,9 +51,13 @@ class ArticlesController extends Controller
     public function store(ArticleRequest $request){
 
         //validation
-        $request = new Article($request->all());
+
+        $article = new Article($request->all());
+        Auth::user()->articles()->save( $article);
+
+        /*$request = new Article($request->all());
         $request['excerpt'] = '';
-        $request->save();
+        $request->save();*/
 
         //flash messaging
         Session::flash('flash_message', 'Your article has been created');
