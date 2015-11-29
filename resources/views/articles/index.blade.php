@@ -10,11 +10,8 @@
                 <h1>Article</h1>
             </div>
 
-            @if(Session::has('flash_message'))
-                <div class="alert alert-success">
-                    {{ Session::get('flash_message') }}
-                </div>
-            @endif
+            {{--@include('partials.flash')--}}
+            @include('flash::message')
 
             @foreach ($articles as $article)
                 <a href="{{ url('/articles', $article->id) }}"><h2>{{ $article->title }}</h2></a>

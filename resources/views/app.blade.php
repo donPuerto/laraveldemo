@@ -16,6 +16,7 @@
 <script>
 $(document).ready(function(){
     console.log("Document is Ready");
+    $('div.alert').delay(2000).slideUp(300);
 });
 </script>
 

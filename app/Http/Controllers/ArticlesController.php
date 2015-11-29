@@ -8,7 +8,7 @@ use App\Http\Requests\ArticleRequest;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Session;
+use Laracasts\Flash\Flash;
 
 class ArticlesController extends Controller
 {
@@ -60,9 +60,23 @@ class ArticlesController extends Controller
         $request->save();*/
 
         //flash messaging
-        Session::flash('flash_message', 'Your article has been created');
 
+        //  \Session::flash('flash_message', 'Your article has been created');
+        // or
+        //session()->flash('flash_message','Your article has been created');
+
+
+       /* session()->flash('flash_message_important',true);*/
+
+        Flash::success('flash_message_important');
         return redirect("articles");
+
+
+        /*return redirect("articles")->with([
+            'flash_message' => 'Your article has been created'
+
+
+        ]);*/
     }
 
     /**
